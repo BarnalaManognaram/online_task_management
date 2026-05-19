@@ -1,33 +1,69 @@
+const loginForm = document.getElementById("loginForm");
 
-    const loginForm = document.getElementById("loginForm");
+loginForm.addEventListener("submit", function(event){
 
-    loginForm.addEventListener("submit", function(event){
+    // Prevent Form Refresh
+    event.preventDefault();
 
-      event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+    fetch("http://localhost:5000/api/auth/login", {
 
-      const message = document.getElementById("message");
+        method: "POST",
 
-      if(email === "" || password === ""){
-        message.innerHTML = "Please fill all fields";
-        return;
-      }
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-      // Sample Login Validation
+        body: JSON.stringify({
+            email,
+            password
+        })
 
-      if(email === "admin@gmail.com" && password === "admin123"){
-        message.style.color = "green";
-        message.innerHTML = "Login Successful";
+    })
 
-        // Redirect Example
-        // window.location.href = "dashboard.html";
-      }
-      else{
-        message.style.color = "red";
-        message.innerHTML = "Invalid Email or Password";
-      }
+    .then(response => response.json())
+
+    .then(data => {
+
+        if (data.success) {
+
+            // Admin Redirect
+            if (data.role === "admin") {
+
+                window.location.href = "admin.html";
+
+            }
+
+            // Manager Redirect
+            else if (data.role === "manager") {
+
+                window.location.href = "manager.html";
+
+            }
+
+            // Developer Redirect
+            else if (data.role === "developer") {
+
+                window.location.href = "developer.html";
+
+            }
+
+        }
+
+        else {
+
+            alert(data.message);
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
 
     });
 
+});
