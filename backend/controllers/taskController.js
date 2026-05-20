@@ -145,6 +145,7 @@ const getTasks = async (req, res) => {
 Update Task Status
 =========================
 */
+
 const updateTaskStatus = async (req, res) => {
 
     try {
@@ -154,6 +155,8 @@ const updateTaskStatus = async (req, res) => {
             role
         } = req.body;
 
+        console.log("STATUS:", status);
+
         /*
         =========================
         Developer Restrictions
@@ -161,16 +164,20 @@ const updateTaskStatus = async (req, res) => {
         */
 
         if (
+
             role === "developer" &&
+
             (
                 status === "Completed" ||
                 status === "Reopened"
             )
+
         ) {
 
             return res.status(403).json({
 
                 success: false,
+
                 message:
                     "Developer cannot complete or reopen tasks"
 
@@ -180,18 +187,12 @@ const updateTaskStatus = async (req, res) => {
 
         /*
         =========================
-        Update Task
+        Find Task
         =========================
         */
 
-        const task = await Task.findByIdAndUpdate(
-
-            req.params.id,
-
-            { status },
-
-            { new: true }
-
+        const task = await Task.findById(
+            req.params.id
         );
 
         if (!task) {
@@ -204,6 +205,22 @@ const updateTaskStatus = async (req, res) => {
             });
 
         }
+
+        /*
+        =========================
+        Update Status
+        =========================
+        */
+
+        task.status = status;
+
+        await task.save();
+
+        /*
+        =========================
+        Success Response
+        =========================
+        */
 
         res.status(200).json({
 
@@ -229,7 +246,6 @@ const updateTaskStatus = async (req, res) => {
     }
 
 };
-
 /*
 =========================
 Delete Task
