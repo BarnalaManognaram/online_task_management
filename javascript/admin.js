@@ -71,7 +71,7 @@ async function createProject() {
                 description,
                 assignedManager,
                 assignedDeveloper,
-                role: "admin"
+                role: sessionStorage.getItem("role")
 
             })
 
@@ -455,7 +455,7 @@ async function createTask() {
                     currentProject,
                 assignedDeveloper,
                 deadline,
-                role: "admin"
+                role: sessionStorage.getItem("role")
 
             })
 
@@ -498,7 +498,7 @@ async function updateTask(
             body: JSON.stringify({
 
                 status,
-                role: "developer"
+                role: sessionStorage.getItem("role")
 
             })
 
@@ -539,7 +539,7 @@ async function deleteTask(taskId) {
 
             body: JSON.stringify({
 
-                role: "admin"
+                role: sessionStorage.getItem("role")
 
             })
 

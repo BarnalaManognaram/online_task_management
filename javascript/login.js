@@ -39,16 +39,17 @@ loginForm.addEventListener("submit", function(event){
             // Manager Redirect
             else if (data.role === "manager") {
 
-                window.location.href = "manager.html";
+                window.location.href = "admin.html";
 
             }
 
             // Developer Redirect
             else if (data.role === "developer") {
 
-                window.location.href = "developer.html";
+                window.location.href = "admin.html";
 
             }
+            sessionStorage.setItem("role", data.role);
 
         }
 
