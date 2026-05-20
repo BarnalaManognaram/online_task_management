@@ -145,12 +145,44 @@ const getTasks = async (req, res) => {
 Update Task Status
 =========================
 */
-
 const updateTaskStatus = async (req, res) => {
 
     try {
 
-        const { status } = req.body;
+        const {
+            status,
+            role
+        } = req.body;
+
+        /*
+        =========================
+        Developer Restrictions
+        =========================
+        */
+
+        if (
+            role === "developer" &&
+            (
+                status === "Completed" ||
+                status === "Reopened"
+            )
+        ) {
+
+            return res.status(403).json({
+
+                success: false,
+                message:
+                    "Developer cannot complete or reopen tasks"
+
+            });
+
+        }
+
+        /*
+        =========================
+        Update Task
+        =========================
+        */
 
         const task = await Task.findByIdAndUpdate(
 
@@ -165,25 +197,33 @@ const updateTaskStatus = async (req, res) => {
         if (!task) {
 
             return res.status(404).json({
+
                 success: false,
                 message: "Task Not Found"
+
             });
 
         }
 
         res.status(200).json({
+
             success: true,
             message: "Task Updated",
             task
+
         });
 
     }
 
     catch (error) {
 
+        console.log(error);
+
         res.status(500).json({
+
             success: false,
             message: "Server Error"
+
         });
 
     }
