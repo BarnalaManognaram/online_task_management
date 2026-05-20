@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>      
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="styles.css">   
+</head>
+<body>      
+    <header>
+        <h1>Manager Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="manager.html">Home</a></li>
+                <li><a href="employee-management.html">Employee Management</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dashboard-overview">
+            <h2>Overview</h2>
+            <div class="overview-cards">
+                <div class="card">
+                    <h3>Total Employees</h3>
+                    <p>50</p>
+                </div>
+                <div class="card">
+                    <h3>Pending Tasks</h3>
+                    <p>5</p>
+                </div>
+                <div class="card">
+                    <h3>Upcoming Meetings</h3>
+                    <p>3</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-activities">
+            <h2>Recent Activities</h2>
+            <ul>
+                <li>John Doe completed the monthly report.</li>
+                <li>Jane Smith updated the project timeline.</li>
+                <li>Michael Brown scheduled a team meeting.</li>
+            </ul>
+        </section>
+
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+            <button onclick="location.href='employee-management.html'">Manage Employees</button>
+            <button onclick="location.href='reports.html'">View Reports</button>
+            <button onclick="location.href='settings.html'">Settings</button>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2024 Company Name. All rights reserved.
+    </footer>
+
+    <script src="scripts.js"></script>  
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>      
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">       
+</head>
+<body>
+    <header>
+        <h1>Developer Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="developer.html">Home</a></li>
+                <li><a href="tasks.html">My Tasks</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dashboard-overview">
+            <h2>Overview</h2>
+            <div class="overview-cards">
+                <div class="card">
+                    <h3>Current Tasks</h3>
+                    <p>8</p>
+                </div>
+                <div class="card">
+                    <h3>Upcoming Deadlines</h3>
+                    <p>2</p>
+                </div>
+                <div class="card">
+                    <h3>Code Reviews Pending</h3>
+                    <p>3</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-activities">
+            <h2>Recent Activities</h2>
+            <ul>
+                <li>You completed the task "Implement Login Feature".</li>
+                <li>You commented on the issue #123.</li>
+                <li>You pushed code to the repository "Project Alpha".</li>
+            </ul>
+        </section>
+
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+            <button onclick="location.href='tasks.html'">View My Tasks</button>
+            <button onclick="location.href='projects.html'">View Projects</button>
+            <button onclick="location.href='settings.html'">Settings</button>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2024 Company Name. All rights reserved.
+    </footer>       
+</body>
+</html>
