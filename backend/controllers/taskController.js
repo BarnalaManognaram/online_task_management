@@ -44,14 +44,19 @@ const createTask = async (req, res) => {
         =========================
         */
 
-        if (role === "developer") {
+        const cleanRole =
+            role?.trim().toLowerCase();
 
-            const existingProject = await Project.findOne({
+        if (cleanRole === "developer") {
 
-                title: project,
-                assignedDeveloper: assignedDeveloper
+            const existingProject =
+                await Project.findOne({
 
-            });
+                    title: project,
+                    assignedDeveloper:
+                        assignedDeveloper
+
+                });
 
             console.log(existingProject);
 
@@ -155,7 +160,18 @@ const updateTaskStatus = async (req, res) => {
             role
         } = req.body;
 
-        console.log("STATUS:", status);
+        const cleanRole =
+            role?.trim().toLowerCase();
+
+        console.log(
+            "ROLE:",
+            `"${cleanRole}"`
+        );
+
+        console.log(
+            "STATUS:",
+            status
+        );
 
         /*
         =========================
@@ -163,15 +179,18 @@ const updateTaskStatus = async (req, res) => {
         =========================
         */
 
+        const restrictedStatuses = [
+            "Completed",
+            "Reopened"
+        ];
+
+        // Only developer restricted
+
         if (
-
-            role === "developer" &&
-
-            (
-                status === "Completed" ||
-                status === "Reopened"
+            cleanRole === "developer" &&
+            restrictedStatuses.includes(
+                status
             )
-
         ) {
 
             return res.status(403).json({
@@ -246,6 +265,7 @@ const updateTaskStatus = async (req, res) => {
     }
 
 };
+
 /*
 =========================
 Delete Task
@@ -256,7 +276,10 @@ const deleteTask = async (req, res) => {
 
     try {
 
-        const task = await Task.findByIdAndDelete(req.params.id);
+        const task =
+            await Task.findByIdAndDelete(
+                req.params.id
+            );
 
         if (!task) {
 

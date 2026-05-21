@@ -8,13 +8,33 @@ const checkRole = (roles) => {
 
     return (req, res, next) => {
 
-        const userRole = req.body.role;
+        const userRole =
+            req.body.role
+                ?.trim()
+                .toLowerCase();
 
-        if (!roles.includes(userRole)) {
+        const allowedRoles =
+            roles.map(role =>
+                role.toLowerCase()
+            );
+
+        console.log("USER ROLE:", userRole);
+        console.log(
+            "ALLOWED ROLES:",
+            allowedRoles
+        );
+
+        if (
+            !allowedRoles.includes(
+                userRole
+            )
+        ) {
 
             return res.status(403).json({
+
                 success: false,
                 message: "Access Denied"
+
             });
 
         }

@@ -481,7 +481,9 @@ async function updateTask(
     taskId,
     status
 ) {
+    const role = sessionStorage.getItem("role");
 
+    console.log(role);
     const response = await fetch(
 
         `${BASE_URL}/tasks/update/${taskId}`,
@@ -498,7 +500,7 @@ async function updateTask(
             body: JSON.stringify({
 
                 status,
-                role: sessionStorage.getItem("role")
+                role: role
 
             })
 

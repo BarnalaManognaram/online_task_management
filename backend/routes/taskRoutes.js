@@ -38,7 +38,11 @@ router.get(
 
 router.put(
     "/update/:id",
-    checkRole(["developer"]),
+    checkRole([
+        "admin",
+        "manager",
+        "developer"
+    ]),
     updateTaskStatus
 );
 

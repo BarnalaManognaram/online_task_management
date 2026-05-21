@@ -24,12 +24,14 @@ const taskSchema = new mongoose.Schema({
 
     status: {
         type: String,
-        enum: [
-        "Open",
+       enum: [
+
+        "Pending",
         "In Progress",
         "In Review",
-        "Reopen",
-        "Done"
+        "Reopened",
+        "Completed"
+
     ],
         default: "Pending"
     },
